@@ -1,21 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './containers/Login';
-import Register from './containers/Register';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./containers/Login";
+import Register from "./containers/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
+import MovieList from './containers/MovieList';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}></Route>
-      <Route path="login" element={<Login />}></Route>
-      <Route path="register" element={<Register />}></Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={
+            <ProtectedRoute>
+              <App />
+            </ProtectedRoute>
+          }/>
+           <Route path="/" element={<MovieList />} />
+
+        <Route
+          path="login"
+          element={
+            <ProtectedRoute loginOnly={false}>
+              <Login />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="register"
+          element={
+            <ProtectedRoute loginOnly={false}>
+              <Register />
+            </ProtectedRoute>
+          }
+        ></Route>
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );

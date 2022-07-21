@@ -72,6 +72,7 @@ const { user } = await createUserWithEmailAndPassword (auth, email, password)
                             />
                         </Grid>
                     </Grid>
+                    <Typography color='red'>{errorMessage}</Typography>
                     <Button
                         type="submit"
                         fullWidth

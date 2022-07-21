@@ -1,14 +1,19 @@
+import { ThemeProvider } from '@mui/material';
 import './App.css';
-
+import theme from './themes/themes';
 import NavBar from './components/NavBar';
-import Home from './containers/Home';
+import { Outlet } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
-    <NavBar />
-    <Home />
+      <NavBar></NavBar>
+      <Outlet/>
     </div>
+    </ThemeProvider>
+   
+    
   );
 }
 
